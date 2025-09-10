@@ -3,19 +3,30 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>SE</groupId>
   <artifactId>HospitalMgmtSystem</artifactId>
-  <pakaging>jar</pakaging>
+  <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>HospitalMgmtSystem Maven Webapp</name>
-  <url>http://maven.java.org12</url>
+  <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
-      <groupId>SE</groupId>
+      <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.6.0</version>
-      <scope>TEDT</scope>
+      <version>4.13.2</version>
+      <scope>test</scope>
     </dependency>
+    <dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.33</version>
+</dependency>
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>jquery</artifactId>
+    <version>3.7.1</version>
+</dependency>
   </dependencies>
   <build>
-    <finalName>localhost:8080/FoodSystem</finalName>
+    <finalName>HospitalMgmtSystem</finalName>
   </build>
 </project>
+
