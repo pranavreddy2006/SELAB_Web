@@ -1,0 +1,112 @@
+Start minikube using Hyper-V driver (document example):
+minikube start --driver=hyperv
+minikube status
+
+
+kubectl: use minikube’s kubectl or install separately
+You can use the bundled kubectl via minikube:
+minikube kubectl -- version --client
+
+
+Create & verify an Nginx deployment (follow document)
+Create deployment:
+minikube kubectl -- create deployment mynginx --image=nginx
+Verify deployment and pods:
+minikube kubectl -- get deployments
+minikube kubectl -- get pods
+minikube kubectl -- describe deployment mynginx
+You should see a pod with name like mynginx-<hash> in Running state.
+
+
+Expose the deployment as a service (NodePort as in doc)
+Expose:
+minikube kubectl -- expose deployment mynginx --type=NodePort --port=80 --target-port=80
+Check service:
+minikube kubectl -- get svc
+To get the service URL (minikube helps):
+minikube service mynginx --url
+Open the printed URL in your browser — you should see the default Nginx page.
+
+
+Scale the deployment (as in doc)
+Scale to 4 replicas:
+minikube kubectl -- scale deployment mynginx --replicas=4
+minikube kubectl -- get pods
+
+
+Open Minikube Dashboard (optional)
+Document recommends dashboard:
+minikube dashboard
+This opens the Kubernetes dashboard in a browser to inspect pods, deployments, services.
+
+
+stop & cleanup (as in doc)
+Delete deployment and service:
+minikube kubectl -- delete deployment mynginx
+minikube kubectl -- delete service mynginx
+Stop minikube:
+minikube stop
+Delete the minikube cluster (if you want to remove VM/data):
+minikube delete
+
+
+Useful verification & troubleshooting commands (per document)
+Get events (useful when pods fail):
+minikube kubectl -- get events --sort-by=.metadata.creationTimestamp
+Describe pods for details:
+minikube kubectl -- describe pod <pod-name>
+View logs:
+minikube kubectl -- logs <pod-name>
+minikube kubectl -- logs <pod-name> --previous
+If Minikube fails to start:
+minikube logs
+minikube status
+
+
+
+
+
+
+
+
+
+
+
+# verify virtualization
+systeminfo
+
+# enable Hyper-V (if needed) + reboot
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+
+# download & install minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-installer.exe
+.\minikube-installer.exe
+
+# start minikube with Hyper-V
+minikube start --driver=hyperv --memory=4096 --cpus=2
+
+# use kubectl via minikube
+minikube kubectl -- get pods -A
+
+# create nginx deployment
+minikube kubectl -- create deployment mynginx --image=nginx
+
+# expose service
+minikube kubectl -- expose deployment mynginx --type=NodePort --port=80 --target-port=80
+minikube service mynginx --url
+
+# scale
+minikube kubectl -- scale deployment mynginx --replicas=4
+
+# dashboard (optional)
+minikube dashboard
+
+# cleanup
+minikube kubectl -- delete deployment mynginx
+minikube kubectl -- delete service mynginx
+minikube stop
+minikube delete
+
+
+
+You should see 4 mynginx pods. Verify load balancing by curling the service or refreshing the browser.
