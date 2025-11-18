@@ -72,3 +72,51 @@ pipeline {
         }
     }
 }
+
+
+or
+
+
+pipeline {
+    agent any
+
+    tools {
+        jdk 'JAVA_HOME'
+        maven 'MAVEN_HOME'
+    }
+
+    stages {
+
+        stage('git repo & clean') {
+            steps {
+                // Delete old folder if it exists
+                bat "rmdir /s /q SELAB_Using_Script || exit 0"
+
+                // Clone your GitHub repo
+                bat "git clone https://github.com/pranavreddy2006/SELAB_Using_Script.git"
+
+                // Clean using pom.xml in your folder
+                bat "mvn clean -f SELAB_Using_Script/pom.xml"
+            }
+        }
+
+        stage('install') {
+            steps {
+                bat "mvn install -f SELAB_Using_Script/pom.xml"
+            }
+        }
+
+        stage('test') {
+            steps {
+                bat "mvn test -f SELAB_Using_Script/pom.xml"
+            }
+        }
+
+        stage('package') {
+            steps {
+                bat "mvn package -f SELAB_Using_Script/pom.xml"
+            }
+        }
+    }
+}
+
