@@ -28,3 +28,47 @@ pipeline {
         }
     }
 }
+
+
+or
+
+
+pipeline {
+    agent any
+
+    tools {
+        maven 'MAVEN-HOME'   // Make sure this name is configured in Jenkins
+    }
+
+    stages {
+        stage('Checkout Repo') {
+            steps {
+                git url: 'https://github.com/pranavreddy2006/SELAB_Java.git'
+            }
+        }
+
+        stage('Clean') {
+            steps {
+                bat "mvn clean -f pom.xml"
+            }
+        }
+
+        stage('Install') {
+            steps {
+                bat "mvn install -f pom.xml"
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat "mvn test -f pom.xml"
+            }
+        }
+
+        stage('Package') {
+            steps {
+                bat 'mvn package -f pom.xml'
+            }
+        }
+    }
+}
