@@ -1,0 +1,25 @@
+| #  | Topic              | Key Command / Config          |
+| -- | ------------------ | ----------------------------- |
+| 1  | Cleaning           | `mvn clean`                   |
+| 2  | Git repo           | `git url: '...'`              |
+| 3  | Maven missing      | Build stage fails             |
+| 4  | WAR creation       | `mvn package`                 |
+| 5  | Test fail continue | Unstable build                |
+| 6  | GitHub trigger     | `githubPush()`                |
+| 7  | Clean vs Compile   | Removes vs Builds             |
+| 8  | Folder name        | Update `dir('studentapp')`    |
+| 9  | Install fail       | Later stages skip             |
+| 10 | Deployment         | After Package stage           |
+| 11 | Maven tool         | Declares tool to use          |
+| 12 | Credentials        | `credentialsId`               |
+| 13 | Plugin             | Pipeline (Workflow)           |
+| 14 | Linux              | Use `sh`                      |
+| 15 | Git fail stop      | Auto stops                    |
+| 16 | Latest code        | `checkout scm`                |
+| 17 | Compile Hello.java | `javac Hello.java`            |
+| 18 | Stop on test fail  | `mvn test`                    |
+| 19 | 6 PM trigger       | `cron('H 18 * * *')`          |
+| 20 | Stage link         | Sequential                    |
+| 21 | .jar output        | `mvn package -Dpackaging=jar` |
+| 22 | Secure clone       | `credentialsId`               |
+| 23 | Build no.          | `${env.BUILD_NUMBER}`         |
