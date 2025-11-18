@@ -1,0 +1,45 @@
+Pull Nagios Docker Image
+Run in PowerShell:
+docker pull jasonrivers/nagios:latest
+
+
+Run the Nagios Container
+Run the exact command from your document:
+docker run --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
+
+To keep it running in background, stop it and restart detached:
+docker stop nagiosdemo
+docker rm nagiosdemo
+docker run -d --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
+
+
+Access the Nagios Dashboard
+Open your browser:
+http://localhost:8888
+Login with:
+username: nagiosadmin
+password: nagios
+
+
+Explore Monitoring
+Your document instructs you to check:
+🟢 Host Status
+Shows “UP”, “DOWN”, “WARNING”, etc.
+🟢 Metrics
+CPU, Memory, Disk, Network usage.
+🟢 Service Checks
+HTTP, PING, SSH, disk usage, load checks.
+🟢 Alerts
+Any notifications Nagios triggered.
+
+
+Stop & Remove Nagios (as in your doc)
+To stop the container:
+docker stop nagiosdemo
+To delete the container:
+docker rm nagiosdemo
+To remove the Nagios image (optional):
+docker images
+docker rmi jasonrivers/nagios:latest
+
+
